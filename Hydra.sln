@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydra.AuthorizationServer", "Hydra.AuthorizationServer\Hydra.AuthorizationServer.csproj", "{695133F9-F98F-45D8-A22E-9EAE3470428E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hydra.AuthorizationCodeFlow", "Hydra.AuthorizationCodeFlow\Hydra.AuthorizationCodeFlow.csproj", "{C9A45257-5248-4D85-A5CA-1CC16C7BDF8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hydra.Shared", "Hydra.Shared\Hydra.Shared.csproj", "{463BEB1A-8C4D-43AE-8232-CB07EE3F920E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hydra.ClientCredentialsFlow", "Hydra.ClientCredentialsFlow\Hydra.ClientCredentialsFlow.csproj", "{9E8E6F3F-122B-4207-A621-A659D1537195}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{695133F9-F98F-45D8-A22E-9EAE3470428E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695133F9-F98F-45D8-A22E-9EAE3470428E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695133F9-F98F-45D8-A22E-9EAE3470428E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695133F9-F98F-45D8-A22E-9EAE3470428E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9A45257-5248-4D85-A5CA-1CC16C7BDF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A45257-5248-4D85-A5CA-1CC16C7BDF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A45257-5248-4D85-A5CA-1CC16C7BDF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A45257-5248-4D85-A5CA-1CC16C7BDF8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{463BEB1A-8C4D-43AE-8232-CB07EE3F920E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{463BEB1A-8C4D-43AE-8232-CB07EE3F920E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{463BEB1A-8C4D-43AE-8232-CB07EE3F920E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{463BEB1A-8C4D-43AE-8232-CB07EE3F920E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8E6F3F-122B-4207-A621-A659D1537195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8E6F3F-122B-4207-A621-A659D1537195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8E6F3F-122B-4207-A621-A659D1537195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8E6F3F-122B-4207-A621-A659D1537195}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {510BE7AD-68C5-4318-9A82-69DACC992C9C}
+	EndGlobalSection
+EndGlobal
