@@ -12,7 +12,7 @@ public class HomeController : Controller
         _authorizationServerHttpClient = authorizationServerHttpClient;
     }
 
-    public IActionResult Index()
+    public IActionResult GetCode()
     {
 
         string redirectUri = Url.ActionLink(nameof(GetToken), "Home", null, Request.Scheme);

@@ -1,6 +1,5 @@
 ﻿using Hydra.Shared;
 using IdentityModel;
-using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Security.Claims;
@@ -69,16 +68,6 @@ public static class IdentityServer4ServiceCollectionExtensions
 
             }
         };
-
-
-
-        List<IdentityResource> identityResources = new()
-        {
-            new IdentityResources.OpenId(),
-            new IdentityResources.Email(),
-            new IdentityResources.Phone(),
-        };
-
         List<ApiScope> apiScopes = new()
         {
             new ApiScope("test-scope")
@@ -90,11 +79,11 @@ public static class IdentityServer4ServiceCollectionExtensions
             identityServerOptions.Events.RaiseFailureEvents = true;
             identityServerOptions.Events.RaiseInformationEvents = true;
             identityServerOptions.Events.RaiseSuccessEvents = true;
+
             identityServerOptions.EmitStaticAudienceClaim = true;
         })
         .AddInMemoryClients(clients)
         .AddInMemoryApiScopes(apiScopes)
-        .AddInMemoryIdentityResources(identityResources)
         .AddTestUsers(TestUsers)
         .AddDeveloperSigningCredential();
 

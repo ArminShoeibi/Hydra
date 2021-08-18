@@ -37,8 +37,10 @@ public class Startup
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hydra.AuthorizationServer v1"));
 
         app.UseRouting();
+
         app.UseIdentityServer();
         app.UseAuthorization();
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapDefaultControllerRoute();
