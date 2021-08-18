@@ -1,13 +1,15 @@
+using Hydra.AuthorizationCodeFlow.HttpClients;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<AuthorizationServerHttpClient>(configuration =>
 {
-    c.SwaggerDoc("v1", new() { Title = "Hydra.AuthorizationCodeFlow", Version = "v1" });
+    configuration.BaseAddress = new Uri("https://localhost:5001");
 });
 
 var app = builder.Build();
@@ -16,14 +18,10 @@ var app = builder.Build();
 if (builder.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hydra.AuthorizationCodeFlow v1"));
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
-app.MapControllers();
-
+app.MapDefaultControllerRoute();
 app.Run();

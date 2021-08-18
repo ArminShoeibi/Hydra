@@ -5,9 +5,26 @@ using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Security.Claims;
 
-namespace Hydra.AuthorizationServer;
+namespace Hydra.AuthorizationServer.Extensions;
 public static class IdentityServer4ServiceCollectionExtensions
 {
+    public static List<TestUser> TestUsers => new()
+    {
+        new TestUser
+        {
+            Username = "ArminShU",
+            Password = "ArminShP",
+            IsActive = true,
+            SubjectId = "8080",
+            Claims = new List<Claim>
+            {
+                new Claim(JwtClaimTypes.Email,"rmin@cyberservices.com"),
+                new Claim(JwtClaimTypes.PhoneNumber,"0912"),
+                new Claim(JwtClaimTypes.PhoneNumberVerified,"true", ClaimValueTypes.Boolean),
+                new Claim(JwtClaimTypes.Name,"Armin Shoeibi"),
+            }
+        },
+    };
     public static IServiceCollection AddIdentityServer4(this IServiceCollection services)
     {
         List<Client> clients = new()
@@ -31,45 +48,31 @@ public static class IdentityServer4ServiceCollectionExtensions
             },
             new Client
             {
-                ClientId = "Hydra.AuthorizationCodeFlowId",
+                ClientId = StaticDetails.HydraAuthorizationCodeFlowClientId,
                 ClientSecrets = new List<Secret>
                 {
-                    new Secret("Hydra.AuthorizationCodeFlowSecret".Sha256())
+                    new Secret(StaticDetails.HydraAuthorizationCodeFlowSecret.Sha256())
                 },
                 AllowedGrantTypes = GrantTypes.Code,
                 ClientName = "Hydra.AuthorizationCodeFlow",
                 ClientUri = "https://localhost:6001",
-                RequireConsent = false,
+                RequireConsent = true,
                 AllowedScopes = new List<string>
                 {
-                   IdentityServerConstants.StandardScopes.Address,
-                   IdentityServerConstants.StandardScopes.Email,
-                   IdentityServerConstants.StandardScopes.OpenId,
-                   IdentityServerConstants.StandardScopes.Phone,
-                   IdentityServerConstants.StandardScopes.Profile,
+                    "test-scope"
                 },
+                RedirectUris = new List<string>()
+                {
+                    "https://localhost:6001/Home/GetToken"
+                },
+                RequirePkce = false,
+
             }
         };
 
-        List<TestUser> testUsers = new()
-        {
-            new TestUser
-            {
-                Username = "ArminShU",
-                Password = "ArminShP",
-                IsActive = true,
-                SubjectId = "8080",
-                Claims = new List<Claim>
-                {
-                    new Claim(JwtClaimTypes.Email,"rmin@cyberservices.com"),
-                    new Claim(JwtClaimTypes.PhoneNumber,"0912"),
-                    new Claim(JwtClaimTypes.PhoneNumberVerified,"true", ClaimValueTypes.Boolean),
-                    new Claim(JwtClaimTypes.Name,"Armin Shoeibi"),
-                }
-            },
-        };
 
-        List<IdentityResource> identityResources = new() 
+
+        List<IdentityResource> identityResources = new()
         {
             new IdentityResources.OpenId(),
             new IdentityResources.Email(),
@@ -92,7 +95,7 @@ public static class IdentityServer4ServiceCollectionExtensions
         .AddInMemoryClients(clients)
         .AddInMemoryApiScopes(apiScopes)
         .AddInMemoryIdentityResources(identityResources)
-        .AddTestUsers(testUsers)
+        .AddTestUsers(TestUsers)
         .AddDeveloperSigningCredential();
 
         return services;

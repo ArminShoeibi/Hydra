@@ -9,8 +9,4 @@
     <ProjectReference Include="..\Hydra.Shared\Hydra.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

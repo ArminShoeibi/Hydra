@@ -1,4 +1,6 @@
-﻿namespace Hydra.AuthorizationServer;
+﻿using Hydra.AuthorizationServer.Extensions;
+
+namespace Hydra.AuthorizationServer;
 public class Startup
 {
     private readonly IConfiguration _configuration;
@@ -11,7 +13,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers();
+        services.AddControllersWithViews();
 
         services.AddSwaggerGen(c =>
         {
@@ -29,15 +31,17 @@ public class Startup
       
         }
         app.UseHttpsRedirection();
+        app.UseStaticFiles();
 
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hydra.AuthorizationServer v1"));
 
         app.UseRouting();
         app.UseIdentityServer();
+        app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapControllers();
+            endpoints.MapDefaultControllerRoute();
         });
     }
 }
